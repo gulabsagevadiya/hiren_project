@@ -26,8 +26,8 @@ export function Header() {
           <Link href="/" className="flex items-center space-x-2">
             <Shield className="h-8 w-8 text-blue-600" />
             <div className="hidden sm:block">
-              <div className="text-xl font-bold text-gray-900">Precision Metal</div>
-              <div className="text-sm text-gray-600">Inspection Services</div>
+              <div className="text-xl font-bold text-gray-900">Inspectra</div>
+              <div className="text-sm text-gray-600">Services</div>
             </div>
           </Link>
 
@@ -46,9 +46,9 @@ export function Header() {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="tel:+1-555-123-4567" className="flex items-center text-gray-700 hover:text-blue-600">
+            <Link href="tel:+917600869646" className="flex items-center text-gray-700 hover:text-blue-600">
               <Phone className="h-4 w-4 mr-2" />
-              <span className="font-medium">555-123-4567</span>
+              <span className="font-medium">+91 7600869646</span>
             </Link>
             <Button asChild>
               <Link href="/contact">Request Quote</Link>
@@ -67,8 +67,8 @@ export function Header() {
                 <Link href="/" className="flex items-center space-x-2" onClick={() => setIsOpen(false)}>
                   <Shield className="h-6 w-6 text-blue-600" />
                   <div>
-                    <div className="font-bold text-gray-900">Precision Metal</div>
-                    <div className="text-sm text-gray-600">Inspection Services</div>
+                    <div className="font-bold text-gray-900">Inspectra</div>
+                    <div className="text-sm text-gray-600">Services</div>
                   </div>
                 </Link>
                 
@@ -86,9 +86,9 @@ export function Header() {
                 </nav>
                 
                 <div className="flex flex-col space-y-4 pt-4 border-t">
-                  <Link href="tel:+1-555-123-4567" className="flex items-center text-gray-700">
+                  <Link href="tel:+917600869646" className="flex items-center text-gray-700">
                     <Phone className="h-4 w-4 mr-2" />
-                    <span>555-123-4567</span>
+                    <span>+91 7600869646</span>
                   </Link>
                   <Button asChild onClick={() => setIsOpen(false)}>
                     <Link href="/contact">Request Quote</Link>

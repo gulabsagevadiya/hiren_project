@@ -12,16 +12,16 @@ export function Footer() {
             <Link href="/" className="flex items-center space-x-2">
               <Shield className="h-8 w-8 text-blue-400" />
               <div>
-                <div className="text-xl font-bold text-white">Precision Metal</div>
-                <div className="text-sm text-gray-400">Inspection Services</div>
+                <div className="text-xl font-bold text-white">Inspectra</div>
+                <div className="text-sm text-gray-400">Services</div>
               </div>
             </Link>
             <p className="text-sm leading-relaxed">
-              Professional metal inspection and non-destructive testing services with over 25 years of industry experience.
+              Professional metal inspection and non-destructive testing services with expert team and state-of-the-art equipment.
             </p>
             <div className="flex space-x-2">
-              <span className="inline-block bg-blue-600 text-white text-xs px-2 py-1 rounded">ISO 9001</span>
-              <span className="inline-block bg-blue-600 text-white text-xs px-2 py-1 rounded">ASNT Level III</span>
+              <span className="inline-block bg-blue-600 text-white text-xs px-2 py-1 rounded">Professional</span>
+              <span className="inline-block bg-blue-600 text-white text-xs px-2 py-1 rounded">Reliable</span>
             </div>
           </div>
 
@@ -33,7 +33,6 @@ export function Footer() {
               <Link href="/services" className="hover:text-blue-400 transition-colors">Our Services</Link>
               <Link href="/industries" className="hover:text-blue-400 transition-colors">Industries</Link>
               <Link href="/contact" className="hover:text-blue-400 transition-colors">Contact</Link>
-              <Link href="/careers" className="hover:text-blue-400 transition-colors">Careers</Link>
             </nav>
           </div>
 
@@ -56,29 +55,36 @@ export function Footer() {
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-blue-400 mt-0.5" />
                 <div>
-                  <div className="font-medium text-white">Main Office</div>
-                  <div className="text-sm">123 Industrial Blvd<br />Houston, TX 77001</div>
+                  <div className="font-medium text-white">Address</div>
+                  <div className="text-sm">
+                    Plot No-, Shed No-1, Shantidham-2,<br />
+                    SIDC Road, Oorja Industrial Park-11,<br />
+                    Near Sangam Technocast pvt ltd,<br />
+                    Veraval(Shapar) - 360024,<br />
+                    Dist Rajkot.
+                  </div>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-blue-400" />
                 <div>
                   <div className="font-medium text-white">Phone</div>
-                  <div className="text-sm">555-123-4567</div>
+                  <div className="text-sm">+91 7600869646</div>
+                  <div className="text-sm">+91 9998110705</div>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-blue-400" />
                 <div>
                   <div className="font-medium text-white">Email</div>
-                  <div className="text-sm">info@precisionmetal.com</div>
+                  <div className="text-sm">inspectra.services@gmail.com</div>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
                 <Clock className="h-5 w-5 text-blue-400 mt-0.5" />
                 <div>
                   <div className="font-medium text-white">Hours</div>
-                  <div className="text-sm">Mon-Fri: 7AM-6PM<br />24/7 Emergency Service</div>
+                  <div className="text-sm">Mon-Fri: 9AM-6PM<br />Sat: 9AM-2PM</div>
                 </div>
               </div>
             </div>

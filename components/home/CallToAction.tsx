@@ -20,17 +20,19 @@ export function CallToAction() {
             <div className="text-center space-y-2">
               <Phone className="h-8 w-8 mx-auto text-blue-200" />
               <div className="font-semibold">Call Us</div>
-              <div className="text-blue-100">555-123-4567</div>
+              <div className="text-blue-100">+91 7600869646</div>
+              <div className="text-blue-100 text-sm">+91 9998110705</div>
             </div>
             <div className="text-center space-y-2">
               <Mail className="h-8 w-8 mx-auto text-blue-200" />
               <div className="font-semibold">Email Us</div>
-              <div className="text-blue-100">info@precisionmetal.com</div>
+              <div className="text-blue-100">inspectra.services@gmail.com</div>
             </div>
             <div className="text-center space-y-2">
               <Clock className="h-8 w-8 mx-auto text-blue-200" />
-              <div className="font-semibold">Emergency Service</div>
-              <div className="text-blue-100">Available 24/7</div>
+              <div className="font-semibold">Business Hours</div>
+              <div className="text-blue-100">Mon-Fri: 9AM-6PM</div>
+              <div className="text-blue-100 text-sm">Sat: 9AM-2PM</div>
             </div>
           </div>
 
@@ -39,12 +41,12 @@ export function CallToAction() {
               <Link href="/contact">Request Free Quote</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600" asChild>
-              <Link href="tel:+1-555-123-4567">Call Now</Link>
+              <Link href="tel:+917600869646">Call Now</Link>
             </Button>
           </div>
 
           <div className="text-center text-blue-100 text-sm">
-            Free consultation • Fast response • Professional service
+            Professional Service • Expert Team • Timely Delivery
           </div>
         </div>
       </div>

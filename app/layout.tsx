@@ -7,9 +7,17 @@ import { Footer } from '@/components/layout/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Precision Metal Inspection Services | NDT & Quality Testing',
-  description: 'Professional metal inspection, non-destructive testing (NDT), and quality assurance services. Certified experts serving oil & gas, construction, and manufacturing industries.',
-  keywords: 'metal inspection, NDT, non-destructive testing, weld inspection, material testing, quality assurance',
+  title: 'Inspectra - Professional Metal Inspection Services',
+  description: 'Professional metal inspection and non-destructive testing services in Rajkot. Expert team, state-of-the-art equipment, and reliable service.',
+  keywords: 'metal inspection, NDT services, Rajkot, Gujarat, industrial inspection, quality control',
+  authors: [{ name: 'Inspectra Services' }],
+  creator: 'Inspectra Services',
+  publisher: 'Inspectra Services',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
 };
 
 export default function RootLayout({
@@ -20,11 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        <div className="flex min-h-screen flex-col">
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

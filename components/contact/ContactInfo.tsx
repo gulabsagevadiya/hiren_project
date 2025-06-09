@@ -23,18 +23,18 @@ export function ContactInfo() {
             <div className="flex items-start space-x-4">
               <Phone className="h-6 w-6 text-blue-600 mt-1" />
               <div>
-                <div className="font-semibold text-gray-900">Main Office</div>
-                <div className="text-gray-600">555-123-4567</div>
-                <div className="text-sm text-gray-500">Mon-Fri: 7:00 AM - 6:00 PM CST</div>
+                <div className="font-semibold text-gray-900">Hiren Bhai</div>
+                <div className="text-gray-600">+91 7600869646</div>
+                <div className="text-sm text-gray-500">Primary Contact</div>
               </div>
             </div>
 
             <div className="flex items-start space-x-4">
-              <AlertTriangle className="h-6 w-6 text-red-600 mt-1" />
+              <Phone className="h-6 w-6 text-blue-600 mt-1" />
               <div>
-                <div className="font-semibold text-gray-900">Emergency Line</div>
-                <div className="text-gray-600">555-123-EMRG (3674)</div>
-                <div className="text-sm text-gray-500">24/7 Emergency Service</div>
+                <div className="font-semibold text-gray-900">Vishal Bhai</div>
+                <div className="text-gray-600">+91 9998110705</div>
+                <div className="text-sm text-gray-500">Secondary Contact</div>
               </div>
             </div>
 
@@ -42,7 +42,7 @@ export function ContactInfo() {
               <Mail className="h-6 w-6 text-blue-600 mt-1" />
               <div>
                 <div className="font-semibold text-gray-900">Email</div>
-                <div className="text-gray-600">info@precisionmetal.com</div>
+                <div className="text-gray-600">inspectra.services@gmail.com</div>
                 <div className="text-sm text-gray-500">Response within 24 hours</div>
               </div>
             </div>
@@ -52,8 +52,11 @@ export function ContactInfo() {
               <div>
                 <div className="font-semibold text-gray-900">Address</div>
                 <div className="text-gray-600">
-                  123 Industrial Boulevard<br />
-                  Houston, TX 77001
+                  Plot No-, Shed No-1, Shantidham-2,<br />
+                  SIDC Road, Oorja Industrial Park-11,<br />
+                  Near Sangam Technocast pvt ltd,<br />
+                  Veraval(Shapar) - 360024,<br />
+                  Dist Rajkot.
                 </div>
               </div>
             </div>
@@ -63,9 +66,9 @@ export function ContactInfo() {
               <div>
                 <div className="font-semibold text-gray-900">Business Hours</div>
                 <div className="text-gray-600">
-                  Monday - Friday: 7:00 AM - 6:00 PM<br />
-                  Saturday: 8:00 AM - 4:00 PM<br />
-                  Sunday: Emergency Service Only
+                  Monday - Friday: 9:00 AM - 6:00 PM<br />
+                  Saturday: 9:00 AM - 2:00 PM<br />
+                  Sunday: Closed
                 </div>
               </div>
             </div>
@@ -73,7 +76,7 @@ export function ContactInfo() {
 
           <div className="pt-4 border-t border-gray-200">
             <Button asChild className="w-full">
-              <a href="tel:+1-555-123-4567">Call Now</a>
+              <a href="tel:+917600869646">Call Now</a>
             </Button>
           </div>
         </CardContent>
@@ -84,9 +87,8 @@ export function ContactInfo() {
         <CardContent className="p-8 space-y-4">
           <h3 className="text-xl font-bold text-gray-900">Service Areas</h3>
           <div className="space-y-2 text-gray-600">
-            <div>• Greater Houston Metropolitan Area</div>
-            <div>• Texas Gulf Coast Region</div>
-            <div>• Louisiana Industrial Corridor</div>
+            <div>• Rajkot and Surrounding Areas</div>
+            <div>• Gujarat Industrial Corridor</div>
             <div>• Nationwide for Major Projects</div>
             <div>• Mobile Services Available</div>
           </div>
@@ -100,15 +102,15 @@ export function ContactInfo() {
           <div className="space-y-3">
             <div className="flex items-center space-x-3">
               <Shield className="h-5 w-5 text-blue-600" />
-              <span className="text-gray-700">ISO 9001 Certified</span>
+              <span className="text-gray-700">Professional Inspection Services</span>
             </div>
             <div className="flex items-center space-x-3">
               <Users className="h-5 w-5 text-blue-600" />
-              <span className="text-gray-700">15+ Certified Technicians</span>
+              <span className="text-gray-700">Expert Team</span>
             </div>
             <div className="flex items-center space-x-3">
               <Clock className="h-5 w-5 text-blue-600" />
-              <span className="text-gray-700">24/7 Emergency Response</span>
+              <span className="text-gray-700">Timely Service</span>
             </div>
           </div>
         </CardContent>
