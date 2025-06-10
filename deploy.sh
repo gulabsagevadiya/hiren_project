@@ -27,8 +27,8 @@ read -p "Enter commit message: " commitMessage
 
 # Install dependencies and build project
 echo "🔧 Building Next.js project..."
-npm install --frozen-lockfile
-npm run build
+yarn install --frozen-lockfile
+yarn build
 
 if [ $? -ne 0 ]; then
   echo "❌ Build failed! Exiting..."
@@ -48,7 +48,7 @@ git push origin HEAD
 
 # Create deployment package
 echo "📦 Packaging deployment files..."
-DEPLOY_FILES=(".next" "public" "package.json" "package-lock.json" $ENV_FILE)
+DEPLOY_FILES=(".next" "public" "package.json" "yarn.lock" $ENV_FILE)
 tar -czf deployment.tar.gz "${DEPLOY_FILES[@]}"
 
 # Upload to server
@@ -70,10 +70,10 @@ ssh $SERVER_USER@$SERVER_IP << SSHCOMMANDS
   rm deployment.tar.gz
   
   echo "🔧 Installing dependencies..."
-  npm install --production --frozen-lockfile
+  yarn install --production --frozen-lockfile
   
   echo "♻ Restarting application..."
-  pm2 restart inspectra || pm2 start npm --name inspectra -- start
+  pm2 restart inspectra || pm2 start yarn --name inspectra -- start
 SSHCOMMANDS
 
 # Cleanup
