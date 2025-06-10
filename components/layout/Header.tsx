@@ -5,14 +5,13 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, Shield, Phone } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Services', href: '/services' },
-  { name: 'Industries', href: '/industries' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'About', href: '/about/' },
+  { name: 'Services', href: '/services/' },
+  { name: 'Industries', href: '/industries/' },
+  { name: 'Contact', href: '/contact/' },
 ];
 
 export function Header() {
