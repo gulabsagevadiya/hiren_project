@@ -1,19 +1,5 @@
 # #!/bin/bash
 chmod +x deploy.sh
-# # Prompt the user for a commit message
-# read -p "Enter commit message: " commitMessage
-
-# # Build the project
-# yarn run build
-
-# # Stage all the files
-# git add .
-
-# # Commit the changes with the provided message
-# git commit -m "$commitMessage"
-
-# # Push the commit to the origin remote repository and HEAD branch
-# git push origin HEAD
 
 
 # Deployment Configuration
