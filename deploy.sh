@@ -7,6 +7,18 @@ SERVER_IP="68.183.91.119"            # Replace with your server IP
 TARGET_DIR="/var/www/inspectra"        # Remote deployment directory
 LOCAL_DIR="."                          # Local project directory
 
+# Install dependencies and build project
+echo "🔧 Building Next.js project..."
+yarn install --frozen-lockfile
+yarn build
+
+if [ $? -ne 0 ]; then
+  echo "❌ Build failed! Exiting..."
+  rm $ENV_FILE
+  exit 1
+fi
+
+
 # Prompt the user for a commit message
 read -p "Enter commit message: " commitMessage
 
@@ -19,18 +31,10 @@ git commit -m "$commitMessage"
 # Push the commit to the origin remote repository and HEAD branch
 git push origin HEAD
 
-# Build project locally
-echo "🏗️ Building project locally..."
-yarn install --frozen-lockfile
-yarn build
-
 # Create deployment package
 echo "📦 Packaging deployment files..."
-tar -czf deployment.tar.gz \
-    package.json \
-    yarn.lock \
-    out \
-    .env.production
+DEPLOY_FILES=(".next" "public" "package.json" "yarn.lock" $ENV_FILE)
+tar -czf deployment.tar.gz "${DEPLOY_FILES[@]}"
 
 # Upload to server
 echo "🚀 Uploading to server..."
@@ -47,19 +51,19 @@ echo "🎛 Executing remote deployment steps..."
 ssh $SERVER_USER@$SERVER_IP << SSHCOMMANDS
   cd $TARGET_DIR
   
-  echo "🧹 Cleaning up existing files..."
-  find . -mindepth 1 ! -name 'deployment.tar.gz' -delete
-  
   echo "📦 Extracting deployment files..."
   tar -xzf deployment.tar.gz
   rm deployment.tar.gz
   
-  echo "🔧 Installing serve package globally..."
-  npm install -g serve
+  echo "🔧 Installing dependencies..."
+  yarn install --production --frozen-lockfile
+  
+  echo "♻ Restarting application..."
+  pm2 restart whatsapi
   
   echo "♻ Restarting application..."
   pm2 delete inspectra || true
-  pm2 start serve --name inspectra -- -s out -p 3000 --no-clipboard --no-request-logging --cors --single
+  pm2 start yarn --name inspectra -- start
   
   echo "📝 PM2 Logs:"
   pm2 logs inspectra --lines 50
