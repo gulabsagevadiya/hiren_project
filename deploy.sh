@@ -47,8 +47,8 @@ echo "🎛 Executing remote deployment steps..."
 ssh $SERVER_USER@$SERVER_IP << SSHCOMMANDS
   cd $TARGET_DIR
   
-  echo "🧹 Cleaning up existing files..."
-  rm -rf * .[^.]*
+  # echo "🧹 Cleaning up existing files..."
+  # rm -rf * .[^.]*
   
   echo "📦 Extracting deployment files..."
   tar -xzf deployment.tar.gz
