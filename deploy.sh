@@ -24,13 +24,12 @@ echo "🏗️ Building project locally..."
 yarn install --frozen-lockfile
 yarn build
 
-# Create deployment package with only necessary files
+# Create deployment package
 echo "📦 Packaging deployment files..."
 tar -czf deployment.tar.gz \
     package.json \
     yarn.lock \
     out \
-    public \
     .env.production
 
 # Upload to server
