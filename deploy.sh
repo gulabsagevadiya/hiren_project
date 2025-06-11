@@ -32,7 +32,6 @@ yarn build
 
 if [ $? -ne 0 ]; then
   echo "❌ Build failed! Exiting..."
-  rm $ENV_FILE
   exit 1
 fi
 
@@ -48,7 +47,7 @@ git push origin HEAD
 
 # Create deployment package
 echo "📦 Packaging deployment files..."
-DEPLOY_FILES=(".next" "public" "package.json" "yarn.lock" $ENV_FILE)
+DEPLOY_FILES=("out" "public" "package.json" "yarn.lock")
 tar -czf deployment.tar.gz "${DEPLOY_FILES[@]}"
 
 # Upload to server
@@ -57,7 +56,7 @@ scp deployment.tar.gz $SERVER_USER@$SERVER_IP:$TARGET_DIR
 
 if [ $? -ne 0 ]; then
   echo "❌ Upload failed! Exiting..."
-  rm deployment.tar.gz $ENV_FILE
+  rm deployment.tar.gz
   exit 1
 fi
 
@@ -71,9 +70,6 @@ ssh $SERVER_USER@$SERVER_IP << SSHCOMMANDS
   
   echo "🔧 Installing dependencies..."
   yarn install --production --frozen-lockfile
-  
-  echo "♻ Restarting application..."
-  pm2 restart inspectra || pm2 start yarn --name inspectra -- start
 SSHCOMMANDS
 
 # Cleanup
