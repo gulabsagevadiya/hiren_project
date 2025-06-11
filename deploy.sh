@@ -27,27 +27,11 @@ yarn build
 # Create deployment package with only necessary files
 echo "📦 Packaging deployment files..."
 tar -czf deployment.tar.gz \
-    --exclude='node_modules' \
-    --exclude='.git' \
-    --exclude='deployment.tar.gz' \
-    --exclude='.env.local' \
-    --exclude='.env.development' \
-    --exclude='.env.test' \
-    --exclude='.env.production' \
-    --exclude='.next' \
-    --exclude='out' \
-    --exclude='*.log' \
-    --exclude='*.md' \
-    --exclude='.gitignore' \
-    --exclude='.eslintrc' \
-    --exclude='.prettierrc' \
-    --exclude='tsconfig.json' \
-    --exclude='jest.config.js' \
-    --exclude='coverage' \
-    --exclude='__tests__' \
-    --exclude='*.test.*' \
-    --exclude='*.spec.*' \
-    .
+    package.json \
+    yarn.lock \
+    out \
+    public \
+    .env.production
 
 # Upload to server
 echo "🚀 Uploading to server..."
@@ -71,12 +55,12 @@ ssh $SERVER_USER@$SERVER_IP << SSHCOMMANDS
   tar -xzf deployment.tar.gz
   rm deployment.tar.gz
   
-  echo "🔧 Installing production dependencies..."
-  yarn install --production --frozen-lockfile
+  echo "🔧 Installing serve package globally..."
+  npm install -g serve
   
   echo "♻ Restarting application..."
   pm2 delete inspectra || true
-  pm2 start yarn --name inspectra -- start
+  pm2 start serve --name inspectra -- -s out -p 3000
   
   echo "📝 PM2 Logs:"
   pm2 logs inspectra --lines 50
