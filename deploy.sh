@@ -59,7 +59,7 @@ ssh $SERVER_USER@$SERVER_IP << SSHCOMMANDS
   
   echo "♻ Restarting application..."
   pm2 delete inspectra || true
-  pm2 start serve --name inspectra -- -s out -p 3000 --no-clipboard --no-request-logging
+  pm2 start serve --name inspectra -- -s out -p 3000 --no-clipboard --no-request-logging --cors --single
   
   echo "📝 PM2 Logs:"
   pm2 logs inspectra --lines 50
