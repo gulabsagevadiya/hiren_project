@@ -79,7 +79,7 @@ ssh $SERVER_USER@$SERVER_IP << SSHCOMMANDS
   pm2 start yarn --name inspectra -- start
   
   echo "📝 PM2 Logs:"
-  pm2 logs inspectra --lines 5
+  pm2 logs inspectra --lines 50
 SSHCOMMANDS
 
 # Cleanup
