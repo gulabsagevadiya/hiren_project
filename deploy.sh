@@ -25,20 +25,6 @@ LOCAL_DIR="."                          # Local project directory
 # Prompt the user for a commit message
 read -p "Enter commit message: " commitMessage
 
-# Clean previous builds
-echo "🧹 Cleaning previous builds..."
-rm -rf .next out
-
-# Install dependencies and build project
-echo "🔧 Building Next.js project..."
-yarn install --frozen-lockfile
-yarn build
-
-if [ $? -ne 0 ]; then
-  echo "❌ Build failed! Exiting..."
-  exit 1
-fi
-
 # Stage all the files
 git add .
 
@@ -50,7 +36,13 @@ git push origin HEAD
 
 # Create deployment package
 echo "📦 Packaging deployment files..."
-tar -czf deployment.tar.gz out
+tar -czf deployment.tar.gz \
+    --exclude='node_modules' \
+    --exclude='.next' \
+    --exclude='out' \
+    --exclude='.git' \
+    --exclude='deployment.tar.gz' \
+    .
 
 # Upload to server
 echo "🚀 Uploading to server..."
@@ -66,10 +58,23 @@ fi
 echo "🎛 Executing remote deployment steps..."
 ssh $SERVER_USER@$SERVER_IP << SSHCOMMANDS
   cd $TARGET_DIR
+  
   echo "📦 Extracting deployment files..."
-  rm -rf out
   tar -xzf deployment.tar.gz
   rm deployment.tar.gz
+  
+  echo "🔧 Installing dependencies..."
+  yarn install --frozen-lockfile
+  
+  echo "🏗️ Building project..."
+  yarn build
+  
+  echo "♻ Restarting application..."
+  pm2 delete inspectra || true
+  pm2 start yarn --name inspectra -- start
+  
+  echo "📝 PM2 Logs:"
+  pm2 logs inspectra --lines 5
 SSHCOMMANDS
 
 # Cleanup
