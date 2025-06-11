@@ -47,18 +47,22 @@ echo "🎛 Executing remote deployment steps..."
 ssh $SERVER_USER@$SERVER_IP << SSHCOMMANDS
   cd $TARGET_DIR
   
-  # echo "🧹 Cleaning up existing files..."
-  # rm -rf * .[^.]*
+  echo "🧹 Cleaning up existing files..."
+  find . -mindepth 1 ! -name 'deployment.tar.gz' -delete
   
   echo "📦 Extracting deployment files..."
   tar -xzf deployment.tar.gz
   rm deployment.tar.gz
   
-  # echo "🔧 Installing dependencies..."
-  # yarn install --frozen-lockfile
+  echo "🔧 Installing serve package globally..."
+  npm install -g serve
   
-  # echo "🏗️ Building project..."
-  # yarn build
+  echo "♻ Restarting application..."
+  pm2 delete inspectra || true
+  pm2 start serve --name inspectra -- -s out -p 3000 --no-clipboard --no-request-logging
+  
+  echo "📝 PM2 Logs:"
+  pm2 logs inspectra --lines 50
 SSHCOMMANDS
 
 # Cleanup
