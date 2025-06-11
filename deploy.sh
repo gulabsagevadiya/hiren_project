@@ -1,6 +1,5 @@
-# #!/bin/bash
+#!/bin/bash
 chmod +x deploy.sh
-
 
 # Deployment Configuration
 SERVER_USER="root"
@@ -20,14 +19,34 @@ git commit -m "$commitMessage"
 # Push the commit to the origin remote repository and HEAD branch
 git push origin HEAD
 
-# Create deployment package
+# Build project locally
+echo "🏗️ Building project locally..."
+yarn install --frozen-lockfile
+yarn build
+
+# Create deployment package with only necessary files
 echo "📦 Packaging deployment files..."
 tar -czf deployment.tar.gz \
     --exclude='node_modules' \
-    --exclude='.next' \
-    --exclude='out' \
     --exclude='.git' \
     --exclude='deployment.tar.gz' \
+    --exclude='.env.local' \
+    --exclude='.env.development' \
+    --exclude='.env.test' \
+    --exclude='.env.production' \
+    --exclude='.next' \
+    --exclude='out' \
+    --exclude='*.log' \
+    --exclude='*.md' \
+    --exclude='.gitignore' \
+    --exclude='.eslintrc' \
+    --exclude='.prettierrc' \
+    --exclude='tsconfig.json' \
+    --exclude='jest.config.js' \
+    --exclude='coverage' \
+    --exclude='__tests__' \
+    --exclude='*.test.*' \
+    --exclude='*.spec.*' \
     .
 
 # Upload to server
@@ -45,15 +64,15 @@ echo "🎛 Executing remote deployment steps..."
 ssh $SERVER_USER@$SERVER_IP << SSHCOMMANDS
   cd $TARGET_DIR
   
+  echo "🧹 Cleaning up existing files..."
+  rm -rf * .[^.]*
+  
   echo "📦 Extracting deployment files..."
   tar -xzf deployment.tar.gz
   rm deployment.tar.gz
   
-  echo "🔧 Installing dependencies..."
-  yarn install --frozen-lockfile
-  
-  echo "🏗️ Building project..."
-  yarn build
+  echo "🔧 Installing production dependencies..."
+  yarn install --production --frozen-lockfile
   
   echo "♻ Restarting application..."
   pm2 delete inspectra || true
