@@ -92,7 +92,7 @@ export function Header() {
                     <span>+91 7600869646</span>
                   </Link>
                   <Button asChild onClick={() => setIsOpen(false)}>
-                    <Link href="/contact" prefetch={false}>Request Quote</Link>
+                    <Link href="/contact/" prefetch={false}>Request Quote</Link>
                   </Button>
                 </div>
               </div>
