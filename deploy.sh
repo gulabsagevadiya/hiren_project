@@ -54,15 +54,11 @@ ssh $SERVER_USER@$SERVER_IP << SSHCOMMANDS
   tar -xzf deployment.tar.gz
   rm deployment.tar.gz
   
-  echo "🔧 Installing serve package globally..."
-  npm install -g serve
+  # echo "🔧 Installing dependencies..."
+  # yarn install --frozen-lockfile
   
-  echo "♻ Restarting application..."
-  pm2 delete inspectra || true
-  pm2 start serve --name inspectra -- -s out -p 3000
-  
-  echo "📝 PM2 Logs:"
-  pm2 logs inspectra --lines 50
+  # echo "🏗️ Building project..."
+  # yarn build
 SSHCOMMANDS
 
 # Cleanup
