@@ -25,6 +25,10 @@ LOCAL_DIR="."                          # Local project directory
 # Prompt the user for a commit message
 read -p "Enter commit message: " commitMessage
 
+# Clean previous builds
+echo "🧹 Cleaning previous builds..."
+rm -rf .next out
+
 # Install dependencies and build project
 echo "🔧 Building Next.js project..."
 yarn install --frozen-lockfile
@@ -44,11 +48,9 @@ git commit -m "$commitMessage"
 # Push the commit to the origin remote repository and HEAD branch
 git push origin HEAD
 
-
 # Create deployment package
 echo "📦 Packaging deployment files..."
-DEPLOY_FILES=("out" "public" "package.json" "yarn.lock")
-tar -czf deployment.tar.gz "${DEPLOY_FILES[@]}"
+tar -czf deployment.tar.gz out
 
 # Upload to server
 echo "🚀 Uploading to server..."
@@ -65,11 +67,9 @@ echo "🎛 Executing remote deployment steps..."
 ssh $SERVER_USER@$SERVER_IP << SSHCOMMANDS
   cd $TARGET_DIR
   echo "📦 Extracting deployment files..."
+  rm -rf out
   tar -xzf deployment.tar.gz
   rm deployment.tar.gz
-  
-  echo "🔧 Installing dependencies..."
-  yarn install --production --frozen-lockfile
 SSHCOMMANDS
 
 # Cleanup
